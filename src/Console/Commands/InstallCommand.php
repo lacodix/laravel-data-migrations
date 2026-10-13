@@ -7,24 +7,17 @@
  * @version     1.0
  */
 
-namespace Jlorente\DataMigrations\Console\Commands;
+namespace Lacodix\LaravelDataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\InstallCommand as BaseInstallCommand;
 
 /**
  * InstallCommand class.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 class InstallCommand extends BaseInstallCommand
 {
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'migrate-data:install';
 
     /**
      * The console command description.
@@ -32,5 +25,15 @@ class InstallCommand extends BaseInstallCommand
      * @var string
      */
     protected $description = 'Create the data migration repository';
+
+    /**
+     * Rename the command after Laravel resolves its inherited name or signature.
+     */
+    protected function configure(): void
+    {
+        parent::configure();
+
+        $this->setName('migrate-data:install');
+    }
 
 }

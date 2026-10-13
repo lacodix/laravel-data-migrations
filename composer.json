@@ -1,25 +1,66 @@
 {
-    "name": "jlorente/laravel-data-migrations",
+    "name": "lacodix/laravel-data-migrations",
     "description": "An extension to allow you to separate data migrations from structure migrations",
     "license": "MIT",
-    "authors": [{
+    "authors": [
+        {
             "name": "Jose Lorente",
             "email": "jose.lorente.martin@gmail.com"
-        }],
+        },
+        {
+            "name": "Dominik Müller",
+            "email": "dominik@lacodix.de",
+            "role": "Maintainer"
+        }
+    ],
     "require": {
-        "php": ">=7.4.0",
-        "illuminate/support": ">=8.0"
+        "php": "^8.2",
+        "laravel/framework": "^11.0|^12.0|^13.0"
     },
     "autoload": {
         "psr-4": {
-            "Jlorente\\DataMigrations\\": "src/"
+            "Lacodix\\LaravelDataMigrations\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Jlorente\\DataMigrations\\DataMigrationsServiceProvider"
+                "Lacodix\\LaravelDataMigrations\\DataMigrationsServiceProvider"
             ]
         }
-    }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "larastan/larastan": "^3.0",
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^11.5.50"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lacodix\\LaravelDataMigrations\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/php-cs-fixer fix",
+        "csfixer:test": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "phpstan:test": "vendor/bin/phpstan analyse --memory-limit=1G",
+        "quality": [
+            "@csfixer:test",
+            "@phpstan:test"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "homepage": "https://github.com/lacodix/laravel-data-migrations",
+    "support": {
+        "issues": "https://github.com/lacodix/laravel-data-migrations/issues",
+        "source": "https://github.com/lacodix/laravel-data-migrations"
+    },
+    "keywords": [
+        "laravel",
+        "data",
+        "migrations"
+    ]
 }

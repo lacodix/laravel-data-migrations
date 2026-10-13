@@ -7,11 +7,11 @@
  * @version     1.0
  */
 
-namespace Jlorente\DataMigrations\Console\Traits;
+namespace Lacodix\LaravelDataMigrations\Console\Traits;
 
 /**
  * DataMigrationCommandTrait trait.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 trait DataMigrationCommandTrait

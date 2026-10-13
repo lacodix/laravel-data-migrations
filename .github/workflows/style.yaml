@@ -1,0 +1,33 @@
+name: Code Style Analysis
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_sqlite, dom, xml, xmlwriter
+          tools: composer:2.10.0
+          coverage: none
+      - name: Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-quality-${{ runner.os }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-quality-${{ runner.os }}-
+      - run: composer validate --strict
+      - run: composer update --prefer-stable --prefer-dist --no-interaction
+      - run: composer quality
+      - run: node --test .github/scripts/*.test.cjs

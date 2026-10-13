@@ -7,20 +7,20 @@
  * @version     1.0
  */
 
-namespace Jlorente\DataMigrations;
+namespace Lacodix\LaravelDataMigrations;
 
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Migrations\Migrator;
-use Jlorente\DataMigrations\Console\Commands\InstallCommand as MigrateInstallCommand;
-use Jlorente\DataMigrations\Console\Commands\MakeMigrateDataCommand;
-use Jlorente\DataMigrations\Console\Commands\MigrateDataCommand;
-use Jlorente\DataMigrations\Console\Commands\RollbackDataCommand;
-use Jlorente\DataMigrations\Repositories\DatabaseDataMigrationRepository;
+use Illuminate\Support\ServiceProvider;
+use Lacodix\LaravelDataMigrations\Console\Commands\InstallCommand as MigrateInstallCommand;
+use Lacodix\LaravelDataMigrations\Console\Commands\MakeMigrateDataCommand;
+use Lacodix\LaravelDataMigrations\Console\Commands\MigrateDataCommand;
+use Lacodix\LaravelDataMigrations\Console\Commands\RollbackDataCommand;
+use Lacodix\LaravelDataMigrations\Repositories\DatabaseDataMigrationRepository;
 
 /**
  * DataMigrationsServiceProvider class.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 class DataMigrationsServiceProvider extends ServiceProvider
@@ -95,6 +95,8 @@ class DataMigrationsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../assets/config/data-migrations.php', 'data-migrations');
+
         $this->bindRepository();
         $this->bindMigrator();
         $this->bindArtisanCommands();
@@ -119,7 +121,7 @@ class DataMigrationsServiceProvider extends ServiceProvider
      */
     protected function bindMigrator()
     {
-        $this->app->singleton('migrator.data', function($app) {
+        $this->app->singleton('migrator.data', function ($app) {
             $repository = $app['migration.data.repository'];
 
             return new Migrator($repository, $app['db'], $app['files']);
