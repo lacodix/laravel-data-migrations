@@ -52,6 +52,7 @@ jobs:
           TESTBENCH: ${{ matrix.testbench }}
           DEPENDENCY_VERSION: ${{ matrix.dependency-version }}
         run: |
+          cp composer.json "$RUNNER_TEMP/data-migrations-composer.json"
           composer require "laravel/framework:$LARAVEL" --no-update --no-interaction
           composer require --dev "orchestra/testbench:$TESTBENCH" --no-update --no-interaction
           php .github/scripts/prepare-test-lane.php
@@ -60,6 +61,7 @@ jobs:
           composer show --direct
           composer check-platform-reqs
           composer audit
+          cp "$RUNNER_TEMP/data-migrations-composer.json" composer.json
       - run: composer test
 
   quality:

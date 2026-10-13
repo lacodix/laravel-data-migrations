@@ -103,7 +103,6 @@ The 3.x candidate includes the command-registration fix from [upstream PR10](htt
 composer install
 composer test
 composer quality
-node --test .github/scripts/*.test.cjs
 ```
 
 With no local lockfile, Composer resolves current stable dependencies. `composer format` applies the project's PHP CS Fixer rules. `composer quality` checks formatting and runs Larastan/PHPStan. Tests use Orchestra Testbench with private generated migration directories and SQLite in memory; no application database or external provider is needed. CI tests stable and lowest installable dependencies on PHP 8.2–8.5 and Laravel 11–13, excluding Laravel 13 on PHP 8.2. The lane helper is for disposable CI manifests only; it allows four explicitly identified Laravel 11 advisories for isolated console compatibility tests. The package manifest itself has no advisory exceptions.

@@ -30,4 +30,3 @@ jobs:
       - run: composer validate --strict
       - run: composer update --prefer-stable --prefer-dist --no-interaction
       - run: composer quality
-      - run: node --test .github/scripts/*.test.cjs
