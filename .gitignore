@@ -1,2 +1,7 @@
 nbproject
 .AppleDouble
+
+/vendor/
+/composer.lock
+/build/
+/.php-cs-fixer.cache

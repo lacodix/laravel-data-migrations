@@ -7,14 +7,14 @@
  * @version     1.0
  */
 
-namespace Jlorente\DataMigrations\Console\Commands;
+namespace Lacodix\LaravelDataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateCommand;
-use Jlorente\DataMigrations\Console\Traits\DataMigrationCommandTrait;
+use Lacodix\LaravelDataMigrations\Console\Traits\DataMigrationCommandTrait;
 
 /**
  * MigrateDataCommand class.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 class MigrateDataCommand extends MigrateCommand
@@ -54,7 +54,8 @@ class MigrateDataCommand extends MigrateCommand
 
         if (!$this->migrator->repositoryExists()) {
             $this->call(
-                    'migrate-data:install', ['--database' => $this->option('database')]
+                'migrate-data:install',
+                ['--database' => $this->option('database')]
             );
         }
     }

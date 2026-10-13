@@ -7,14 +7,14 @@
  * @version     1.0
  */
 
-namespace Jlorente\DataMigrations\Console\Commands;
+namespace Lacodix\LaravelDataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
-use Jlorente\DataMigrations\Console\Traits\DataMigrationCommandTrait;
+use Lacodix\LaravelDataMigrations\Console\Traits\DataMigrationCommandTrait;
 
 /**
  * MakeMigrateDataCommand class.
- * 
+ *
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
 class MakeMigrateDataCommand extends MigrateMakeCommand

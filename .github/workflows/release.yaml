@@ -1,0 +1,38 @@
+name: Create Release
+
+on:
+  workflow_call:
+    inputs:
+      publish:
+        description: Publish a release after owner opt-in
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: data-migrations-package-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Initial v3.0.0 and later caller opt-in require an owner decision.
+    if: inputs.publish && github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'lacodix/laravel-data-migrations'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Create release
+        uses: rymndhng/release-on-push-action@aebba2bbce07a9474bf95e8710e5ee8a9e922fe2 # v0.28.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          bump_version_scheme: minor
+          use_github_release_notes: true
