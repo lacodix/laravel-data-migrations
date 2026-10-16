@@ -1,5 +1,9 @@
 # Data migrations for Laravel
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/lacodix/laravel-data-migrations.svg?style=flat-square)](https://packagist.org/packages/lacodix/laravel-data-migrations)
+[![Total Downloads](https://img.shields.io/packagist/dt/lacodix/laravel-data-migrations.svg?style=flat-square)](https://packagist.org/packages/lacodix/laravel-data-migrations)
+[![License](https://img.shields.io/packagist/l/lacodix/laravel-data-migrations.svg?style=flat-square)](LICENSE.txt)
+
 Keep changes to existing data separate from schema migrations. Laravel's `migrate` commands continue to use `database/migrations` and the `migrations` history table. This package uses `database/migrations_data` and a separate `migrations_data` history table.
 
 This is a fork of [jlorente/laravel-data-migrations](https://github.com/jlorente/laravel-data-migrations), originally authored by José Lorente Martín. [Lacodix](https://github.com/lacodix) has taken over ongoing maintenance and development. Original author and MIT attribution are preserved.
